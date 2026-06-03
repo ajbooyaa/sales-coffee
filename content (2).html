@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sales Coffee Shop — Menu & About</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Lato', sans-serif;
+      background: #fdf8f2;
+      color: #2c1a0e;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      background: rgba(253,248,242,0.95);
+      backdrop-filter: blur(8px);
+      padding: 1rem 2.5rem;
+      display: flex; justify-content: space-between; align-items: center;
+      border-bottom: 1px solid #e8d9c5;
+      z-index: 100;
+    }
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      color: #2c1a0e;
+      text-decoration: none;
+    }
+    nav a {
+      text-decoration: none;
+      color: #7a5c3d;
+      font-size: 0.9rem;
+      margin-left: 2rem;
+      letter-spacing: 0.05em;
+      transition: color 0.2s;
+    }
+    nav a:hover { color: #2c1a0e; }
+    .nav-btn {
+      background: #2c1a0e;
+      color: #fdf8f2 !important;
+      padding: 0.5rem 1.25rem;
+      border-radius: 3px;
+    }
+
+    /* PAGE HERO */
+    .page-hero {
+      padding: 8rem 3rem 4rem;
+      text-align: center;
+      border-bottom: 1px solid #e8d9c5;
+    }
+    .section-tag {
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #a0714f;
+      margin-bottom: 0.75rem;
+    }
+    .page-hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      margin-bottom: 1rem;
+    }
+    .page-hero p {
+      color: #7a5c3d;
+      font-size: 1rem;
+      max-width: 44ch;
+      margin: 0 auto;
+      line-height: 1.8;
+      font-weight: 300;
+    }
+
+    /* FULL MENU */
+    .menu-section { padding: 4rem 3rem; }
+    .menu-section h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.75rem;
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid #e8d9c5;
+    }
+    .menu-category { margin-bottom: 3rem; }
+    .menu-list { display: flex; flex-direction: column; gap: 1px; background: #e8d9c5; border: 1px solid #e8d9c5; }
+    .menu-item {
+      display: flex; justify-content: space-between; align-items: center;
+      background: #fdf8f2;
+      padding: 1.25rem 1.5rem;
+      transition: background 0.2s;
+    }
+    .menu-item:hover { background: #fff; }
+    .item-info h4 { font-size: 1rem; font-weight: 700; margin-bottom: 0.2rem; }
+    .item-info p { font-size: 0.82rem; color: #7a5c3d; }
+    .item-price { font-weight: 700; color: #a0714f; font-size: 1rem; white-space: nowrap; margin-left: 1rem; }
+
+    /* AI IMAGE FEATURE */
+    .image-feature {
+      margin: 0 3rem 4rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border: 1px solid #e8d9c5;
+      border-radius: 4px;
+      overflow: hidden;
+      min-height: 360px;
+    }
+    .image-feature img {
+      width: 100%; height: 100%;
+      object-fit: cover; display: block;
+    }
+    .image-feature-placeholder {
+      background: #3d2512;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .image-feature-placeholder p {
+      color: rgba(255,255,255,0.2);
+      font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase;
+    }
+    .image-feature-text {
+      padding: 3rem;
+      display: flex; flex-direction: column; justify-content: center;
+      background: #2c1a0e;
+    }
+    .image-feature-text .section-tag { color: rgba(255,255,255,0.4); margin-bottom: 0.75rem; }
+    .image-feature-text h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.75rem; color: #fff;
+      margin-bottom: 1rem; line-height: 1.25;
+    }
+    .image-feature-text p {
+      color: rgba(255,255,255,0.6);
+      font-size: 0.9rem; line-height: 1.8;
+    }
+
+    /* ABOUT */
+    .about-section {
+      padding: 4rem 3rem;
+      max-width: 700px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .about-section h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem; margin-bottom: 1.25rem;
+    }
+    .about-section p {
+      color: #7a5c3d; font-size: 0.95rem;
+      line-height: 1.85; margin-bottom: 1rem; font-weight: 300;
+    }
+
+    /* FOOTER */
+    footer {
+      background: #2c1a0e;
+      color: rgba(255,255,255,0.5);
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.82rem;
+    }
+    footer span { color: #a0714f; }
+
+    @media (max-width: 768px) {
+      nav { padding: 1rem; }
+      .page-hero { padding: 6rem 1.5rem 2.5rem; }
+      .menu-section { padding: 2.5rem 1.5rem; }
+      .image-feature { grid-template-columns: 1fr; margin: 0 1.5rem 3rem; }
+      .about-section { padding: 3rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="logo">Sales Coffee</a>
+    <div>
+      <a href="index.html">Home</a>
+      <a href="#menu">Menu</a>
+      <a href="#about">About</a>
+    </div>
+  </nav>
+
+  <!-- PAGE HERO -->
+  <div class="page-hero">
+    <p class="section-tag">Welcome</p>
+    <h1>Our Menu & Story</h1>
+    <p>Everything we serve is made with care, from our single-origin espresso to our house-baked pastries.</p>
+  </div>
+
+  <!-- FULL MENU -->
+  <div class="menu-section" id="menu">
+
+    <div class="menu-category">
+      <h2>☕ Espresso Drinks</h2>
+      <div class="menu-list">
+        <div class="menu-item">
+          <div class="item-info"><h4>Espresso</h4><p>Double shot, perfectly pulled</p></div>
+          <div class="item-price">$3.50</div>
+        </div>
+        <div class="menu-item">
+          <div class="item-info"><h4>Cappuccino</h4><p>Equal parts espresso, steamed milk, and foam</p></div>
+          <div class="item-price">$5.50</div>
+        </div>
+        <div class="menu-item">
+          <div class="item-info"><h4>Oat Milk Latte</h4><p>Double shot with creamy oat milk — our #1</p></div>
+          <div class="item-price">$6.00</div>
+        </div>
+        <div class="menu-item">
+          <div class="item-info"><h4>Flat White</h4><p>Ristretto shots with velvety microfoam</p></div>
+          <div class="item-price">$5.75</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="menu-category">
+      <h2>🧊 Cold Drinks</h2>
+      <div class="menu-list">
+        <div class="menu-item">
+          <div class="item-info"><h4>Iced Mocha</h4><p>Chocolate, espresso, cold milk over ice</p></div>
+          <div class="item-price">$6.50</div>
+        </div>
+        <div class="menu-item">
+          <div class="item-info"><h4>Cold Brew</h4><p>Steeped 18 hours, smooth and bold</p></div>
+          <div class="item-price">$5.00</div>
+        </div>
+        <div class="menu-item">
+          <div class="item-info"><h4>Iced Vanilla Latte</h4><p>House-made vanilla syrup with oat milk</p></div>
+          <div class="item-price">$6.25</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="menu-category">
+      <h2>🥐 Pastries</h2>
+      <div class="menu-list">
+        <div class="menu-item">
+          <div class="item-info"><h4>Butter Croissant</h4><p>Baked fresh every morning</p></div>
+          <div class="item-price">$4.00</div>
+        </div>
+        <div class="menu-item">
+          <div class="item-info"><h4>Banana Bread</h4><p>Moist, dense, and never too sweet</p></div>
+          <div class="item-price">$4.50</div>
+        </div>
+        <div class="menu-item">
+          <div class="item-info"><h4>Almond Tart</h4><p>House-made frangipane in a butter crust</p></div>
+          <div class="item-price">$5.50</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- AI IMAGE FEATURE -->
+  <div class="image-feature">
+    <img src="ai-image.jpg" alt="Inside Sales Coffee Shop"
+      onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+    <div class="image-feature-placeholder" style="display:none;"><p>ai-image.jpg</p></div>
+    <div class="image-feature-text">
+      <p class="section-tag">The Space</p>
+      <h2>A place worth coming back to.</h2>
+      <p>Warm lighting, exposed brick, and the smell of fresh espresso. Sales Coffee Shop is designed to be your favorite place in the city.</p>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <div class="about-section" id="about">
+    <p class="section-tag">Our Story</p>
+    <h2>Born in Seattle</h2>
+    <p>Sales Coffee Shop started with a simple belief: everyone deserves an exceptional cup of coffee. We source our beans directly from small farms, roast them locally, and train our baristas with the care and precision of a craft.</p>
+    <p>Whether you're here for a quick espresso before work or a slow afternoon with your laptop, we're glad you're here. This is your coffee shop.</p>
+  </div>
+
+  <footer>
+    <p>© 2026 <span>Sales Coffee Shop</span> · Seattle, WA · All rights reserved.</p>
+  </footer>
+
+</body>
+</html>
