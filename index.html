@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sales Coffee Shop</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Lato', sans-serif;
+      background: #fdf8f2;
+      color: #2c1a0e;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      background: rgba(253,248,242,0.95);
+      backdrop-filter: blur(8px);
+      padding: 1rem 2.5rem;
+      display: flex; justify-content: space-between; align-items: center;
+      border-bottom: 1px solid #e8d9c5;
+      z-index: 100;
+    }
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      color: #2c1a0e;
+      text-decoration: none;
+    }
+    nav a {
+      text-decoration: none;
+      color: #7a5c3d;
+      font-size: 0.9rem;
+      margin-left: 2rem;
+      letter-spacing: 0.05em;
+      transition: color 0.2s;
+    }
+    nav a:hover { color: #2c1a0e; }
+    .nav-btn {
+      background: #2c1a0e;
+      color: #fdf8f2 !important;
+      padding: 0.5rem 1.25rem;
+      border-radius: 3px;
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+    .hero-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 8rem 3rem 4rem;
+    }
+    .hero-tag {
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #a0714f;
+      margin-bottom: 1rem;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.5rem, 4vw, 4rem);
+      line-height: 1.15;
+      margin-bottom: 1.25rem;
+      color: #2c1a0e;
+    }
+    .hero p {
+      font-size: 1rem;
+      color: #7a5c3d;
+      line-height: 1.8;
+      max-width: 38ch;
+      margin-bottom: 2rem;
+      font-weight: 300;
+    }
+    .btn {
+      display: inline-block;
+      background: #2c1a0e;
+      color: #fdf8f2;
+      padding: 0.9rem 2rem;
+      border-radius: 3px;
+      text-decoration: none;
+      font-size: 0.85rem;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      font-weight: 700;
+      transition: background 0.2s;
+      align-self: flex-start;
+    }
+    .btn:hover { background: #a0714f; }
+
+    /* HERO RIGHT - video/image panel */
+    .hero-right {
+      position: relative;
+      overflow: hidden;
+      background: #2c1a0e;
+      min-height: 500px;
+    }
+    .hero-right video {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      opacity: 0.75;
+    }
+    .hero-right img {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      opacity: 0.8;
+    }
+    .hero-right::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(to right, rgba(44,26,14,0.4), transparent);
+    }
+
+    /* FEATURES */
+    .features {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border-top: 1px solid #e8d9c5;
+      border-bottom: 1px solid #e8d9c5;
+    }
+    .feature {
+      padding: 3rem 2rem;
+      text-align: center;
+      border-right: 1px solid #e8d9c5;
+    }
+    .feature:last-child { border-right: none; }
+    .feature-icon { font-size: 2rem; margin-bottom: 1rem; }
+    .feature h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+    }
+    .feature p { font-size: 0.88rem; color: #7a5c3d; line-height: 1.7; }
+
+    /* MENU PREVIEW */
+    .menu-section {
+      padding: 5rem 3rem;
+      text-align: center;
+    }
+    .section-tag {
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #a0714f;
+      margin-bottom: 0.75rem;
+    }
+    .menu-section h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 3vw, 3rem);
+      margin-bottom: 3rem;
+    }
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      max-width: 900px;
+      margin: 0 auto 2.5rem;
+    }
+    .menu-card {
+      background: #fff;
+      border: 1px solid #e8d9c5;
+      padding: 2rem 1.5rem;
+      border-radius: 4px;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .menu-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(44,26,14,0.1);
+    }
+    .menu-card .icon { font-size: 2rem; margin-bottom: 0.75rem; }
+    .menu-card h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      margin-bottom: 0.4rem;
+    }
+    .menu-card p { font-size: 0.82rem; color: #7a5c3d; margin-bottom: 0.75rem; }
+    .menu-card .price {
+      font-weight: 700; color: #a0714f; font-size: 0.95rem;
+    }
+
+    /* IMAGE SECTION */
+    .image-section {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 420px;
+      background: #2c1a0e;
+    }
+    .image-panel {
+      position: relative; overflow: hidden;
+    }
+    .image-panel img {
+      width: 100%; height: 100%;
+      object-fit: cover; opacity: 0.8;
+      display: block;
+    }
+    .image-panel-placeholder {
+      width: 100%; height: 100%; min-height: 420px;
+      background: #3d2512;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .image-panel-placeholder p {
+      color: rgba(255,255,255,0.2);
+      font-size: 0.75rem; letter-spacing: 0.15em;
+      text-transform: uppercase; text-align: center;
+    }
+    .image-text {
+      display: flex; flex-direction: column;
+      justify-content: center; padding: 4rem;
+    }
+    .image-text .section-tag { color: rgba(255,255,255,0.4); margin-bottom: 1rem; }
+    .image-text h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.75rem, 2.5vw, 2.5rem);
+      color: #fff; margin-bottom: 1rem; line-height: 1.2;
+    }
+    .image-text p {
+      color: rgba(255,255,255,0.6);
+      font-size: 0.92rem; line-height: 1.8;
+      margin-bottom: 2rem; max-width: 38ch;
+    }
+    .btn-outline {
+      display: inline-block;
+      border: 1px solid rgba(255,255,255,0.4);
+      color: #fff;
+      padding: 0.8rem 1.75rem;
+      border-radius: 3px;
+      text-decoration: none;
+      font-size: 0.82rem;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      font-weight: 700;
+      align-self: flex-start;
+      transition: background 0.2s;
+    }
+    .btn-outline:hover { background: #a0714f; border-color: #a0714f; }
+
+    /* FOOTER */
+    footer {
+      background: #2c1a0e;
+      color: rgba(255,255,255,0.5);
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.82rem;
+    }
+    footer span { color: #a0714f; }
+
+    @media (max-width: 768px) {
+      nav { padding: 1rem; }
+      .hero { grid-template-columns: 1fr; }
+      .hero-right { min-height: 280px; }
+      .hero-left { padding: 7rem 1.5rem 3rem; }
+      .features { grid-template-columns: 1fr; }
+      .feature { border-right: none; border-bottom: 1px solid #e8d9c5; }
+      .menu-grid { grid-template-columns: 1fr; }
+      .image-section { grid-template-columns: 1fr; }
+      .menu-section { padding: 3rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="logo">Sales Coffee</a>
+    <div>
+      <a href="#menu">Menu</a>
+      <a href="content.html">About</a>
+      <a href="content.html" class="nav-btn">Order Now</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-left">
+      <p class="hero-tag">☕ Seattle's Finest</p>
+      <h1>Coffee that<br />moves you.</h1>
+      <p>Handcrafted espresso, single-origin brews, and a cozy atmosphere — Sales Coffee Shop is your daily ritual, perfected.</p>
+      <a href="content.html" class="btn">See Our Menu</a>
+    </div>
+    <div class="hero-right">
+      <video autoplay muted loop playsinline>
+        <source src="video.mp4" type="video/mp4" />
+      </video>
+      <img src="ai-image.jpg" alt="Sales Coffee Shop" />
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <div class="features">
+    <div class="feature">
+      <div class="feature-icon">🫘</div>
+      <h3>Single Origin Beans</h3>
+      <p>Sourced from small farms in Ethiopia, Colombia, and Guatemala. Every cup tells a story.</p>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">👩‍🍳</div>
+      <h3>Expert Baristas</h3>
+      <p>Our team trains for months before pulling their first shot. Your drink deserves that care.</p>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">🏡</div>
+      <h3>A Place to Stay</h3>
+      <p>Fast wifi, cozy seats, and good vibes. Stay for an hour or the whole afternoon.</p>
+    </div>
+  </div>
+
+  <!-- MENU PREVIEW -->
+  <section class="menu-section" id="menu">
+    <p class="section-tag">Our Menu</p>
+    <h2>What We're Brewing</h2>
+    <div class="menu-grid">
+      <div class="menu-card">
+        <div class="icon">☕</div>
+        <h4>Espresso</h4>
+        <p>Bold, smooth, and perfectly extracted. The classic.</p>
+        <div class="price">$3.50</div>
+      </div>
+      <div class="menu-card">
+        <div class="icon">🥛</div>
+        <h4>Oat Latte</h4>
+        <p>Creamy oat milk with a double shot. Our bestseller.</p>
+        <div class="price">$6.00</div>
+      </div>
+      <div class="menu-card">
+        <div class="icon">🧊</div>
+        <h4>Iced Mocha</h4>
+        <p>Rich chocolate, espresso, and cold milk over ice.</p>
+        <div class="price">$6.50</div>
+      </div>
+    </div>
+    <a href="content.html" class="btn">See Full Menu →</a>
+  </section>
+
+  <!-- IMAGE + TEXT -->
+  <div class="image-section">
+    <div class="image-panel">
+      <img src="ai-image.jpg" alt="Coffee shop interior"
+        onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+      <div class="image-panel-placeholder" style="display:none;">
+        <p>ai-image.jpg</p>
+      </div>
+    </div>
+    <div class="image-text">
+      <p class="section-tag">Our Story</p>
+      <h2>Born in Seattle,<br />brewed with love.</h2>
+      <p>Sales Coffee Shop started with one goal: make the best cup of coffee in the city and share it with everyone. We've been doing it ever since.</p>
+      <a href="content.html" class="btn-outline">Learn More</a>
+    </div>
+  </div>
+
+  <footer>
+    <p>© 2026 <span>Sales Coffee Shop</span> · Seattle, WA · All rights reserved.</p>
+  </footer>
+
+</body>
+</html>
